@@ -35,5 +35,23 @@ class Program
         }
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
+
+        // タスクリスト変換・実行
+        sw.Reset();
+        var tasks = new List<Task>();
+        foreach (var action in actions)
+        {
+            //tasks.Add(Task.Run((action)));
+            tasks.Add(Task.Factory.StartNew((action)));
+        }
+        Console.WriteLine("----Task.Factory.StartNew----");
+        sw.Start();
+        foreach (var task in tasks)
+        {
+            task.Wait();
+        }
+        sw.Stop();
+        Console.WriteLine($">>実行結果：{sw.Elapsed}");
+
     }
 }
