@@ -53,5 +53,12 @@ class Program
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
 
+        // Parallel.Invoke実行
+        sw.Reset();
+        Console.WriteLine("----Parallel.Invoke----");
+        sw.Start();
+        Parallel.Invoke([.. actions]);
+        sw.Stop();
+        Console.WriteLine($">>実行結果：{sw.Elapsed}");
     }
 }
