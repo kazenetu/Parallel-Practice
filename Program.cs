@@ -7,24 +7,18 @@ class Program
     static void Main(string[] args)
     {
         // 実行速度確認リスト
-        var actions = new List<Action>
+        var actions = new List<Action>();
+        for (int i = 0; i < 10; i++)
         {
-           () =>
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine($"Hello, World11! {DateTime.Now.ToString("HH:mm:ss.fff")}");
-            },
-           () =>
+            var no = i + 1;
+            actions.Add(
+                () =>
                 {
-                Thread.Sleep(1000);
-                Console.WriteLine($"Hello, World2! {DateTime.Now.ToString("HH:mm:ss.fff")}");
-            },
-            () =>
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine($"Hello, World13 {DateTime.Now.ToString("HH:mm:ss.fff")}");
-            }
-        };
+                    Thread.Sleep(1000);
+                    Console.WriteLine($"Hello, World! {no:0000} {DateTime.Now.ToString("HH:mm:ss.fff")}");
+                }
+            );            
+        }
 
         var sw = new Stopwatch();
         Console.WriteLine("----同期実行----");
@@ -42,7 +36,7 @@ class Program
         foreach (var action in actions)
         {
             //tasks.Add(Task.Run((action)));
-            tasks.Add(Task.Factory.StartNew((action)));
+            tasks.Add(Task.Factory.StartNew(action));
         }
         Console.WriteLine("----Task.Factory.StartNew----");
         sw.Start();
