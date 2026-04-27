@@ -30,7 +30,7 @@ class Program
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
 
-        // タスクリスト変換・実行
+        // 複数タスク実行と完了待機
         sw.Reset();
         var tasks = new List<Task>();
         foreach (var action in actions)
