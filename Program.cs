@@ -30,8 +30,9 @@ class Program
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
 
-        // 複数タスク実行と完了待機
         sw.Reset();
+        // 複数タスク実行と完了待機
+        sw.Start();
         var tasks = new List<Task>();
         foreach (var action in actions)
         {
@@ -39,7 +40,6 @@ class Program
             tasks.Add(Task.Factory.StartNew(action));
         }
         Console.WriteLine("----Task.Factory.StartNew----");
-        sw.Start();
         foreach (var task in tasks)
         {
             task.Wait();
