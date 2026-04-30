@@ -36,7 +36,6 @@ class Program
         var tasks = new List<Task>();
         foreach (var action in actions)
         {
-            //tasks.Add(Task.Run((action)));
             tasks.Add(Task.Factory.StartNew(action));
         }
         Console.WriteLine("----Task.Factory.StartNew----");
