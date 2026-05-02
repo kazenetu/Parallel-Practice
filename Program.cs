@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Parallel_Practice.Practices;
 
 namespace Parallel_Practice;
 
@@ -17,7 +18,7 @@ class Program
                     Thread.Sleep(1000);
                     Console.WriteLine($"Hello, World! {no:0000} {DateTime.Now.ToString("HH:mm:ss.fff")}");
                 }
-            );            
+            );
         }
 
         var sw = new Stopwatch();
@@ -53,5 +54,8 @@ class Program
         Parallel.Invoke([.. actions]);
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
+
+        // 練習クラス：Parallel.Invoke：実行
+        ParallelInvokePractice.Run();
     }
 }
