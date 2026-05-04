@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Parallel_Practice.Practices;
+﻿using Parallel_Practice.Practices;
 
 namespace Parallel_Practice;
 
