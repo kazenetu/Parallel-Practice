@@ -8,5 +8,8 @@ class Program
     {
         // 練習クラス：Parallel.Invoke：実行
         ParallelInvokePractice.Run();
+
+        // 練習クラス：Parallel.Invoke：リスト設定：実行
+        ParallelInvokeReturnStringPractice.Run();
     }
 }
