@@ -6,9 +6,17 @@ class ParallelInvokePractice
 {
     public static void Run()
     {
+        Console.WriteLine();
+        Console.WriteLine("〜〜練習クラス：Parallel.Invoke：コンソール出力〜〜");
+
+        // アクション生成数
+        var actionCreateCount = 10;
+        Console.WriteLine($"　　アクション生成数:{actionCreateCount}");
+        Console.WriteLine();
+
         // 実行速度確認リスト
         var actions = new List<Action>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < actionCreateCount; i++)
         {
             var no = i + 1;
             actions.Add(
