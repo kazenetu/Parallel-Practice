@@ -15,6 +15,9 @@ class ParallelInvokeReturnStringPractice
         Console.WriteLine($"　　アクション生成数:{actionCreateCount}");
         Console.WriteLine();
 
+        // プログレス単位
+        var progressUnit = actionCreateCount / 10;
+
         // まとめてConsole.WriteLineするための文字列リスト
         var consoleWites = new ConcurrentBag<string>();
 
@@ -34,6 +37,10 @@ class ParallelInvokeReturnStringPractice
 
                     // 文字列リストに追加
                     consoleWites.Add(result);
+
+                    // プログレス確認と描画
+                    if (no % progressUnit == 0)
+                        Console.Write("＝");
                 }
             );
         }
@@ -53,6 +60,7 @@ class ParallelInvokeReturnStringPractice
         {
             task.Wait();
         }
+        Console.WriteLine();
         Console.WriteLine(string.Join(string.Empty, consoleWites));
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
@@ -63,6 +71,7 @@ class ParallelInvokeReturnStringPractice
         Console.WriteLine("----Parallel.Invoke----");
         sw.Start();
         Parallel.Invoke([.. actions]);
+        Console.WriteLine();
         Console.WriteLine(string.Join(string.Empty, consoleWites));
         sw.Stop();
         Console.WriteLine($">>実行結果：{sw.Elapsed}");
