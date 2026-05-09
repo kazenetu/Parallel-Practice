@@ -1,5 +1,7 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace Parallel_Practice.Practices;
 
@@ -45,8 +47,14 @@ class ParallelInvokeReturnStringPractice
             );
         }
 
+        // 詳細出力用文字列
+        var output = new StringBuilder();
+        output.AppendLine();
+        output.AppendLine("〜〜詳細出力〜〜");
 
         // 複数タスク実行と完了待機
+        var titleTaskFactoryStartNew = "Task.Factory.StartNew";
+        Console.WriteLine($"----{titleTaskFactoryStartNew}----");
         var sw = new Stopwatch();
         consoleWites.Clear();
         sw.Start();
@@ -55,25 +63,38 @@ class ParallelInvokeReturnStringPractice
         {
             tasks.Add(Task.Factory.StartNew(action));
         }
-        Console.WriteLine("----Task.Factory.StartNew----");
         foreach (var task in tasks)
         {
             task.Wait();
         }
         Console.WriteLine();
-        Console.WriteLine(string.Join(string.Empty, consoleWites));
         sw.Stop();
-        Console.WriteLine($">>実行結果：{sw.Elapsed}");
+        var timeTaskFactoryStartNew = $">>実行結果：{sw.Elapsed}";
+        Console.WriteLine(timeTaskFactoryStartNew);
+
+        // 複数タスク実行と完了待機：詳細出力
+        output.AppendLine($"--{titleTaskFactoryStartNew}：詳細--");
+        output.AppendLine(string.Join(string.Empty, consoleWites));
+        output.AppendLine(timeTaskFactoryStartNew);
+        output.AppendLine();
 
         // Parallel.Invoke実行
+        var titleParallelInvoke = "Parallel.Invoke";
+        Console.WriteLine($"----{titleParallelInvoke}----");
         sw.Reset();
-        consoleWites.Clear();
-        Console.WriteLine("----Parallel.Invoke----");
         sw.Start();
         Parallel.Invoke([.. actions]);
-        Console.WriteLine();
-        Console.WriteLine(string.Join(string.Empty, consoleWites));
         sw.Stop();
-        Console.WriteLine($">>実行結果：{sw.Elapsed}");
+        var timeParallelInvoke = $">>実行結果：{sw.Elapsed}";
+        Console.WriteLine(timeParallelInvoke);
+
+        // Parallel.Invoke実行：詳細出力
+        output.AppendLine($"--{titleParallelInvoke}：詳細--");
+        output.AppendLine(string.Join(string.Empty, consoleWites));
+        output.AppendLine(timeParallelInvoke);
+
+        // 出力結果詳細
+        Console.WriteLine();
+        Console.WriteLine(output.ToString());
     }
 }
