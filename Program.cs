@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Parallel_Practice.Practices;
+﻿using Parallel_Practice.Practices;
 
 namespace Parallel_Practice;
 
@@ -9,7 +7,7 @@ class Program
     /// <summary>
     /// パラメータ
     /// </summary>
-    private enum  Params
+    private enum Params
     {
         all,
         invoke, invoke_string
