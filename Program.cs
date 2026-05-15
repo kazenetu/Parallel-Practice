@@ -10,7 +10,8 @@ class Program
     private enum Params
     {
         all,
-        invoke, invoke_string
+        invoke, invoke_string, 
+        foreach_inputparam
     };
 
     /// <summary>
@@ -39,5 +40,9 @@ class Program
         // 練習クラス：Parallel.Invoke：リスト設定：実行
         if (param == $"{Params.all}" || param == $"{Params.invoke_string}")
             ParallelInvokeReturnStringPractice.Run();
+
+        // 練習クラス：Parallel.ForEach：パラメータ設定：実行
+        if (param == $"{Params.all}" || param == $"{Params.foreach_inputparam}")
+            ParallelForeachInputParamPractice.Run();
     }
 }
