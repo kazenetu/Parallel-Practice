@@ -11,14 +11,14 @@ class Program
     {
         all,
         invoke, invoke_string, 
-        foreach_inputparam
+        foreach_inputparam, foreach_async
     };
 
     /// <summary>
     /// メイン処理
     /// </summary>
     /// <param name="args">パラメータ</param>
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         // 引数なしの場合はヘルプ
         if (args.Length <= 0)
@@ -44,5 +44,9 @@ class Program
         // 練習クラス：Parallel.ForEach：パラメータ設定：実行
         if (param == $"{Params.all}" || param == $"{Params.foreach_inputparam}")
             ParallelForeachInputParamPractice.Run();
+
+        // 練習クラス：Parallel.ForEach：非同期：パラメータ設定
+        if (param == $"{Params.all}" || param == $"{Params.foreach_async}")
+            await ParallelForeachAsyncInputParamPractice.RunAsync();
     }
 }
