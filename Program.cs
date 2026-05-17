@@ -24,9 +24,11 @@ class Program
         if (args.Length <= 0)
         {
             Console.WriteLine("dotnet run <パラメータ>");
-            Console.WriteLine($"パラメータ：{Params.all}\tすべて実施");
-            Console.WriteLine($"　　　　　：{Params.invoke}\tParallel.Invokeコンソール表示");
-            Console.WriteLine($"　　　　　：{Params.invoke_string}\tParallel.Invoke ConcurrentBag使用");
+            Console.WriteLine($"パラメータ：{Params.all}                   すべて実施");
+            Console.WriteLine($"　　　　　：{Params.invoke}                Parallel.Invoke   コンソール表示");
+            Console.WriteLine($"　　　　　：{Params.invoke_string}         Parallel.Invoke   ConcurrentBag使用");
+            Console.WriteLine($"　　　　　：{Params.foreach_inputparam}    Parallel.ForEach  パラメータ設定");
+            Console.WriteLine($"　　　　　：{Params.foreach_async}         Parallel.ForEach(非同期)  パラメータ設定");
             return;
         }
 
